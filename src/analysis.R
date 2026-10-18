@@ -29,7 +29,7 @@
 # <-, replaces exactly the elements it marks and leaves the names attached. That
 # is the subassignment the constraint is asking for.
 clean_scores_vector <- function(scores) {
-    stop("TODO: implement clean_scores_vector()")
+    stop("TODO: implement clean_scores_vector")
 }
 
 # clean_scores_scalar(scores)
@@ -53,8 +53,15 @@ clean_scores_vector <- function(scores) {
 # writes to it. Write each result back with out[[i]] <- value, which keeps the
 # names attached. Accumulating into a fresh vector with out <- c(out, value)
 # drops them, and the check compares with identical(), which notices.
+
+
 clean_scores_scalar <- function(scores) {
-    stop("TODO: implement clean_scores_scalar()")
+    out <- setNames(as.double(scores), names(scores))
+    for (i in seq_along(out)) {
+        v <- scores[[i]]
+        out[[i]] <- if (is.na(v)) 0 else min(2 * v, 20)
+    }
+    out
 }
 
 # build_roster(student_names, groups, scores)
@@ -119,5 +126,12 @@ build_roster <- function(student_names, groups, scores) {
 # split() can divide adjusted_score by every factor level. vapply() can then
 # compute one mean for each part and return a named vector with no dimensions.
 summarize_roster <- function(roster) {
-    stop("TODO: implement summarize_roster()")
+    list(
+        rows = nrow(roster),
+        missing_raw = sum(is.na(roster$raw_score)),
+        mean_adjusted = mean(roster$adjusted_score),
+        passed = roster$name[roster$passed],
+        mean_by_group = vapply(split(roster$adjusted_score, roster$group),
+                                        mean, numeric(1))
+    )
 }
