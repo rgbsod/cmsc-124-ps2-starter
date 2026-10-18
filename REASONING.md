@@ -37,10 +37,14 @@ A data frame is a list of equal-length columns, as stated in R-intro 6.3, so typ
 Matrix is defined to have 2 rows, and is similiar to data frame such that it's output is like a table; using recycling rule as a reference, from 1-6 it will alternate between the two rows while iterating until it reaches 6, so it 1 will be in 1st row, 2 will be in 2nd row, 3 will be in 1st row, and so on. Atomic vector makes the whole matrix an integer despite being a matrix as no rule is cites matrix being its own data type, length is 6 as we iterated from 1 to 6, and dimension is 2x3 as there are 2 rows, and had 3 columns to finish iterating.
 
 ## P11
-Mean being called would normally give the mean of the set given by the vector. However, `NA_real_` is present in the vector, and as per missing value rule, any operation with a missing value results in a missing result, hence `NA`. Its type would be a double as per atomic vector rule, with all items being a double including the `NA_real_`,length 0 as result is a `NA` and dimension is not applicable so it is none.
+Mean being called would normally give the mean of the set given by the vector. However, `NA_real_` is present in the vector, and as per missing value rule, any operation with a missing value results in a missing result, hence `NA`. Its type would be a double as per atomic vector rule, with all items being a double including the `NA_real_`, length 0 as result is a `NA` and dimension is not applicable so it is none.
+
+Correction: It should be written as [NA], as we return a vector.
 
 ## P12
 Unlike P11, `na.rm` is `TRUE`, so it would remove the missing values so it could calculate the mean. Now the resulting vector has 2 items consisting of [8,10] and getting the mean results in 2. The final result then is a double as both items were a double, length of 1, and dimension none as it is not applicable in this context.
+
+Correction: Overlooked the calculation and wrote 2 as the mean when it should be 9. The format also should be written as [9], as we return a vector.
 
 ## P13
 This vector was initialized as [1,2,3], so it would be an integer vector at first. When we assigned x[2] as 2.5, R widened the whole vector to be a double. Now the final vector is [1,2.5,3] with the final type of be a double, length of 3, and dimension none as it is not applicable in this context.
