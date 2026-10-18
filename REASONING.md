@@ -10,26 +10,25 @@ later commit.
 The coercion ladder rule runs logical, integer, double and turns the whole vector into double because of atomic vector rule, double is higher in priority than integers, which the other items' data type are. The case initializes three items in the vector, therefore length of 3. No matrix or array structure is present so dim is none. 
 
 ## P02
-Similarly to P01, the coercion ladder rule runs integer, character, logical and turns the whole vector into characters because "2" is a character, which is the highest among the other data values. The case initializes three items in the vector, therefore length of 3. No matrix or array structure is present so dim is none. 
+The coercion ladder also decides here that since we have a string "2", all values become character, so TRUE is stored as "TRUE" and 1L becomes "1". Has 3 elements and not a matrix so no dimensions.
 
 ## P03
-Recycling rule makes it so the shorter vector is scanned left to right, an item being added to the longer vector's item, then its next item gets added to the longer vector's next item, and so on; if the shorter vector reaches the end, it starts from the beginning. In this case, the longer vector has 4 items, so a length of 4. Its values were added from 1 and 2, alternating, and as all concerned items are integers, all of them are integers.  No matrix or array structure is present so dim is none. 
+R recycles shorter operands, so 1L and 2L are added repeatedly to all elements, becoming [11,22,31,42]. L suffix turns the type to integer. It has 4 elements and is not a matrix so no dimensions.
 
 ## P04
-In Intro to R, 2.7 cites the index vectors, where essentially a postive index k x[k] picks position k, starting from index 1. Here, it calls indices 3 and 1, respectively. We get a vector of [9,8], both being integers from the original vector, with length 2 as there were only 2 called indices, with the names disregarded as I believe them to be labels for easier reading. No matrix or array structure is present so dim is none
-
+Indexing requests values from the vector in order. It asks for the element in 3 and 1 which are integers because of the L suffix, resulting in [third=9,first=8]. It has 2 elements and is not a matrix so no dimensions.
 
 ## P05
-Index vectors also covers negative indices, where it will exclude the item in that position in the final vector. Here, it calls index -2, which means we will return a vector of [4,9] since we remove the item in position 2 from the original vector, so 3 - 1 = length 2 in the new vector, both integers, and no matrix or array structure is present so dim is none.
+Indexing request with - sign asks for the elements in those positions be excluded resulting in [4,9] with integer type because of L suffix. It has 2 elements and is not a matrix so no dimensions.
 
 ## P06
-The missing values rule from 2.5 means `is.na(x)` checks if this item in the vector is `NA`, and | computes logical OR at every position; combined, they can result either in `TRUE | NA` which results in `TRUE` or `FALSE | NA` which results in `FALSE`, then the logical index rule keeps which items resulted in `TRUE`, so the value is [NA,12]. The type is integer because of atomic vector rule as both items are integers, the length is 2, and no matrix or array structure is present so dim is none.
+Logical operator "|" evaluates is.na(x) or x>10L for all elements starting from the first. NA_integer_ is NA with specified type and 12>10 resulting in [NA,12]. It has 2 elements and is not a matrix so no dimensions.
 
 ## P07
-Factor rule allows a vector having a group within that are grouped and/or classified together, in this case being levels. The value is written following the notation from the manual, so `factor[low,high,low];levels=[low,high]`, and as all of them are characters, we follow atomic vector rule, total length of the factor is 5 including the initial vector combined with the levels. No matrix or array structure is present so dim is none.
+factor always stores integer codes. Value comes from following Grader Notation. Has 3 elements and is not a matrix so no dimensions.
 
 ## P08
-6.1 cites Lists listing components that can be consisted of different types, so this list contains 2 components consisting of a vector and a character. List is its on type, and dimension is not applicable in lists. The values is written following the manual, with top-level being listed as the main components, with their respective sub-values listed as well.
+typeof() of a list is list. Value comes from following Grader Notation. Has 2 list elements and is not a matrix so no dimensions.
 
 ## P09
 A data frame is a list of equal-length columns, as stated in R-intro 6.3, so type is a list even though class would be data.frame. length counts the top-level elements, which are the columns, so the length is 2, and the dimensions are the row and column counts, written 2x2. The value is written in the grader's data frame notation with each column's contents.
@@ -55,3 +54,4 @@ This array is an atomic vector with its dim attb defined as a vector (from 5.1),
 
 ## P16
 From the zero-index rule, it will return an empty vector as the index selects nothing and will return a zero-length result with the type following the atomic type of the initial vector, which is integer. Due to this, dim is none.
+The coercion ladder decides that since we have 3.5, the entire vector becomes double, so the logical TRUE becomes 1. Has 3 elements and not a matrix so no dimensions.
