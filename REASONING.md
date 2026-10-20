@@ -30,6 +30,8 @@ factor always stores integer codes. Value comes from following Grader Notation. 
 ## P08
 typeof() of a list is list. Value comes from following Grader Notation. Has 2 list elements and is not a matrix so no dimensions.
 
+Correction: removed = sign from value, a mistake in following the Grader Notation.
+
 ## P09
 A data frame is a list of equal-length columns, as stated in R-intro 6.3, so type is a list even though class would be data.frame. length counts the top-level elements, which are the columns, so the length is 2, and the dimensions are the row and column counts, written 2x2. The value is written in the grader's data frame notation with each column's contents.
 
@@ -40,6 +42,7 @@ Matrix is defined to have 2 rows, and is similiar to data frame such that it's o
 Mean being called would normally give the mean of the set given by the vector. However, `NA_real_` is present in the vector, and as per missing value rule, any operation with a missing value results in a missing result, hence `NA`. Its type would be a double as per atomic vector rule, with all items being a double including the `NA_real_`, length 0 as result is a `NA` and dimension is not applicable so it is none.
 
 Correction: It should be written as [NA], as we return a vector.
+Correction: length is actually 1 not 0 since NA is still stored as a value and vector is not empty.
 
 ## P12
 Unlike P11, `na.rm` is `TRUE`, so it would remove the missing values so it could calculate the mean. Now the resulting vector has 2 items consisting of [8,10] and getting the mean results in 2. The final result then is a double as both items were a double, length of 1, and dimension none as it is not applicable in this context.
